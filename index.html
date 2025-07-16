@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简介页面-「余诺」</title>
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <script type="text/javascript">
+        windowWidth = document.documentElement.clientWidth || document.body.clientWidth;
+        windowHeight = document.documentElement.clientHeight || document.body.clientHeight;       
+    </script>
+    <div id="loadback"
+        style="background-color:#b4cfda;width:100%;height:100%;z-index:105;position:fixed;transition:5s;top:0;left:0;color: #444546;">
+        <p id="loadbacktext"
+            style="width:100%;position:absolute;left:0;font-size:50px;transition:1s;height:100px;top:calc(50% - 80px);text-align:center;opacity:0;margin:0;">
+            哈喽~欢迎来到我的网站</p>
+        <p id="loadbacktexteng"
+            style="width:100%;position:absolute;left:0;font-size:25px;transition:1s;height:50px;top:50%;text-align:center;opacity:0;margin:0;">
+            Hello~Welcome to my website</p>
+        <script>setTimeout(() => { document.getElementById('loadbacktext').style.opacity = 1; document.getElementById('loadbacktexteng').style.opacity = 1; }, 100);
+            setTimeout(() => { document.getElementById('loadbacktext').style.opacity = 0; document.getElementById('loadbacktexteng').style.opacity = 0; }, 2100);
+            setTimeout(() => {
+                document.getElementById('loadbacktext').innerText = '无';
+                document.getElementById('loadbacktexteng').innerText = 'none'
+                document.getElementById('loadbacktext').style.opacity = 1; document.getElementById('loadbacktexteng').style.opacity = 1;
+            }, 4100);
+            let zh_ms = ['无']; let en_ms = ['none'];
+            let c = -1;
+            let bcci = setInterval(() => {
+                document.getElementById('loadbacktext').style.opacity = 0; document.getElementById('loadbacktexteng').style.opacity = 0;
+                setTimeout(() => {
+                    c++; document.getElementById('loadbacktext').innerText = zh_ms[c % 7];
+                    document.getElementById('loadbacktexteng').innerText = en_ms[c % 7];
+                    document.getElementById('loadbacktext').style.opacity = 1; document.getElementById('loadbacktexteng').style.opacity = 1;
+                }, 1000); document.getElementById('loadback').style.backgroundColor = '#003561';
+                setTimeout(() => { document.getElementById('loadback').style.backgroundColor = '#000'; }, 5000);
+            }, 10000);
+            document.body.onload = () => { document.getElementById('loadback').style.opacity = 0; setTimeout(() => { document.getElementById('loadback').style.display = 'none'; }, 3000); clearInterval(bcci) };</script>
+    </div>
+
+    <div class="main">
+        <div class="container">
+            <div class="section self">
+                <div class="contain">
+                    <img src="assets/images/user.jpg" alt="user.jpg" class="user-img">
+                    <p class="title">「余诺」</p>
+                    <p class="sub-title">做自己想做，想自己所想</p>
+                    <p class="text">All For One.</p>
+                    <a href="#" class="down-link"><img src="assets/images/down.gif" alt="down.gif" class="down-img"></a>
+                </div>
+            </div>
+            <div class="section skill">
+                <div class="contain">
+                    <div class="skill-pane">
+                        <p class="title">前端</p>
+                        <p class="text">HTML5 + CSS3 + JavaScript</p>
+                        <p class="hr"></p>
+                        <p class="title">后端</p>
+                        <p class="text">Java + C++/C + Python</p>
+                        <p class="hr"></p>
+                        <p class="title">娱乐</p>
+                        <p class="text">电竞 + 棋类 + ...</p>
+                        <p class="hr"></p>
+                        <p class="title">其他</p>
+                        <p class="text">设计 + 建模 + ...</p>
+                    </div>
+                    <img src="assets/images/skill-font.png" alt="skill-font" class="skill-font">
+                    <a href="#" class="down-link"><img src="assets/images/down.gif" alt="down.gif" class="down-img"></a>
+                </div>
+            </div>
+
+            <div class="section time-line">
+                <div class="contain">
+                    <ul class="time-ul">
+                        <li>
+                            <div class="time-card">
+                                <p class="title">2016 - 2022</p>
+                                <p class="text">九年义务教育</p>
+                                <p class="text">但那时候贪玩就没有认真学习</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="time-card">
+                                <p class="title">2022 - 2025</p>
+                                <p class="text">高中读了一个刚诞生不久的学校</p>
+                                <p class="text">开始了我的编程之旅</p>
+                                <p class="text">学习各种编程知识</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="time-card">
+                                <p class="title">2025 - 2077</p>
+                                <p class="text">考上了目标的大学</p>
+                                <p class="text">未知的未来...</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="#" class="down-link"><img src="assets/images/down.gif" alt="down.gif" class="down-img"></a>
+                </div>
+            </div>
+
+            <div class="section hobby">
+                <div class="contain">
+                    <div class="hobby-card left">
+                        <img src="assets/images/星野.jpg" alt="星野.jpg" class="art">
+                        <p class="title">GAME</p>
+                        <p class="sub-title">游戏/联机/二次元</p>
+                        <p class="text">枪战类《穿越火线》</p>
+                        <p class="text">MOBA类《王者荣耀》</p>
+                        <p class="text">「年少唯好绚纷世，今朝回眸浮梦虚」</p>
+                    </div>
+                    <div class="hobby-card mid">
+                        <img src="assets/images/胡桃.jpg" alt="胡桃.jpg" class="art">
+                        <p class="title">ACG</p>
+                        <p class="sub-title">动漫/漫画/轻小说</p>
+                        <p class="text">喜欢兽耳萝莉文</p>
+                        <p class="text">嘘~</p>
+                        <p class="text">「秋红零落繁花尽，流金扶摇春萧扬」</p>
+                    </div>
+                    <div class="hobby-card right">
+                        <img src="assets/images/白子.jpg" alt="白子.jpg" class="art">
+                        <p class="title">Music</p>
+                        <p class="sub-title">音乐/乐器</p>
+                        <p class="text">喜欢音乐不会唱，喜欢乐器不会弹</p>
+                        <p class="text">“自己人，别开腔”</p>
+                        <p class="text">「怜君尚抚华年志，踏尽平芜碧浸云」</p>
+                    </div>
+                    <a href="#" class="down-link"><img src="assets/images/down.gif" alt="down.gif" class="down-img"></a>
+                </div>
+            </div>
+
+            <div class="section contact">
+                <div class="contain">
+                    <p class="title">联系方式</p>
+                    <div class="contact-pane">
+                                              
+                        <div class="contact-item">
+                            <a href="https://github.com/ContinueYN" target="_blank"><img src="assets/images/github.png"
+                                    alt="github.png"></a>
+                            <p>GitHub</p>
+                        </div>
+                        <div class="contact-item">
+                            <a href="https://gitee.com/ContinueYN" target="_blank"><img src="assets/images/gitee.png"
+                                    alt="gitee.png"></a>
+                            <p>Gitee</p>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <p class="copy">Copyright © 2025-3025 ContinueYN All Rights Reserved.</p>
+                        <p class="studio">ContinueYN 版权所有</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <ul>
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="bar"></div>
+        </div>
+    </div>
+</body>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/index.js"></script>
+
+</html>
