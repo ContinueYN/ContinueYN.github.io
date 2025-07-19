@@ -27,7 +27,6 @@
             setTimeout(() => { document.getElementById('loadbacktext').style.opacity = 0; document.getElementById('loadbacktexteng').style.opacity = 0; }, 2100);
             setTimeout(() => {
                 document.getElementById('loadbacktext').innerText = '白白山雲著水輕，竹風微動野香迎';
-                document.getElementById('loadbacktexteng').innerText = 'none'
                 document.getElementById('loadbacktext').style.opacity = 1; document.getElementById('loadbacktexteng').style.opacity = 1;
             }, 4100);
             let zh_ms = ['年来南北各营营,人事愁看几变更（正在加载请稍等...）','相逢且莫分尊贱,对饮何妨论浊清（欢迎!）', '归去休嗔山径恶，料君高步蹑鹏程（请耐心等待）',
@@ -36,8 +35,8 @@
             let bcci = setInterval(() => {
                 document.getElementById('loadbacktext').style.opacity = 0; document.getElementById('loadbacktexteng').style.opacity = 0;
                 setTimeout(() => {
-                    c++; document.getElementById('loadbacktext').innerText = zh_ms[c % 7];
-                    document.getElementById('loadbacktexteng').innerText = en_ms[c % 7];
+                    c++; document.getElementById('loadbacktext').innerText = zh_ms[c % 4];
+                    document.getElementById('loadbacktexteng').innerText = en_ms[c % 4];
                     document.getElementById('loadbacktext').style.opacity = 1; document.getElementById('loadbacktexteng').style.opacity = 1;
                 }, 1000); document.getElementById('loadback').style.backgroundColor = '#003561';
                 setTimeout(() => { document.getElementById('loadback').style.backgroundColor = '#000'; }, 5000);
