@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简介页面-「余诺」</title>
+    <meta name="description" content="余诺的个人作品集网站 - 前端开发、后端开发、编程竞赛">
+    <meta name="keywords" content="余诺,前端开发,后端开发,编程,作品集">
+    <meta property="og:title" content="余诺的个人简介">
+    <meta property="og:description" content="欢迎来到我的个人网站">
+    
+    <!-- 添加暗黑模式meta标签 -->
+    <meta name="color-scheme" content="light dark">
+    
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="assets/fonts/OPPOSans-L.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/images/background.webp" as="image">
+</head>
+
+<body>
+    <!-- 暗黑模式切换按钮 -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="切换暗黑模式">
+        <span class="theme-icon">🌙</span>
+    </button>
+    
+    <script type="text/javascript">
+        // 在加载脚本前初始化主题
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+
+    <script type="text/javascript">
+        windowWidth = document.documentElement.clientWidth || document.body.clientWidth;
+        windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+        
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode === 123) { // F12 key
+                event.preventDefault();
+                return false;
+            }
+        });
+        document.addEventListener('contextmenu', function (event) {
+                event.preventDefault();
+                return false;
+            });   
+        document.onkeydown = function () {
+                //禁止ctrl+u
+                if (event.ctrlKey && window.event.keyCode == 85) {
+                    return false;
+                }
+            }       
+
+        // 添加加载进度功能
+        let loadedResources = 0;
+        const totalResources = 4; // 主要图片资源数量
+        
+        function resourceLoaded() {
+            loadedResources++;
+            const progress = (loadedResources / totalResources) * 80;
+            const loadText = document.getElementById('loadbacktext');
+            if (loadText) {
+                loadText.innerText = `哈喽~欢迎来到我的网站(${Math.round(progress)}%)`;
+            }
+        }
+    </script>
+
+    <div id="loadback"
+        style="background-color:#b4cfda;width:100%;height:100%;z-index:105;position:fixed;transition:5s;top:0;left:0;color: #444546;">
+        <p id="loadbacktext"
+            style="width:100%;position:absolute;left:0;font-size:50px;transition:1s;height:100px;top:calc(50% - 80px);text-align:center;opacity:0;margin:0;">
+            哈喽~欢迎来到我的网站</p>
+        <p id="loadbacktexteng"
+            style="width:100%;position:absolute;left:0;font-size:25px;transition:1s;height:50px;top:50%;text-align:center;opacity:0;margin:0;">
+            Hello~Welcome to my website</p>
+        <script>
+            // 添加资源加载监听
+            const resources = [
+                'assets/images/user.webp',
+                'assets/images/skill-font.webp',
+                'assets/images/background.webp',
+            ];
+            
+            resources.forEach(src => {
+                const resource = src.includes('.ttf') ? new FontFace('OPPOSans-L', `url(${src})`) : new Image();
+                if (src.includes('.ttf')) {
+                    resource.load().then(() => {
+                        resourceLoaded();
+                    }).catch(() => {
+                        resourceLoaded(); // 即使失败也继续
+                    });
+                } else {
+                    resource.src = src;
+                    resource.onload = resourceLoaded;
+                    resource.onerror = resourceLoaded; // 即使失败也继续
+                }
+            });
+
+            setTimeout(() => { 
+                document.getElementById('loadbacktext').style.opacity = 1; 
+                document.getElementById('loadbacktexteng').style.opacity = 1; 
+            }, 100);
+            setTimeout(() => { 
+                document.getElementById('loadbacktext').style.opacity = 0; 
+                document.getElementById('loadbacktexteng').style.opacity = 0; 
+            }, 2100);
+            setTimeout(() => {
+                document.getElementById('loadbacktext').innerText = '白白山雲著水輕，竹風微動野香迎';
+                document.getElementById('loadbacktexteng').innerText = 'none';
+                document.getElementById('loadbacktext').style.opacity = 1; 
+                document.getElementById('loadbacktexteng').style.opacity = 1;
+            }, 4100);
+            let zh_ms = ['年来南北各营营,人事愁看几变更（正在加载请稍等...）','相逢且莫分尊贱,对饮何妨论浊清（欢迎!）', '归去休嗔山径恶，料君高步蹑鹏程（请耐心等待）',
+                '此去匆匆何所憶，莫忘心事寫於雲（页面马上加载出来）']; 
+            let en_ms = ['none','none','none','none'];
+            let c = -1;
+            let bcci = setInterval(() => {
+                document.getElementById('loadbacktext').style.opacity = 0; 
+                document.getElementById('loadbacktexteng').style.opacity = 0;
+                setTimeout(() => {
+                    c++; 
+                    document.getElementById('loadbacktext').innerText = zh_ms[c % 4];
+                    document.getElementById('loadbacktexteng').innerText = en_ms[c % 4];
+                    document.getElementById('loadbacktext').style.opacity = 1; 
+                    document.getElementById('loadbacktexteng').style.opacity = 1;
+                }, 1000); 
+                document.getElementById('loadback').style.backgroundColor = '#003561';
+                setTimeout(() => { 
+                    document.getElementById('loadback').style.backgroundColor = '#000'; 
+                }, 5000);
+            }, 10000);
+            document.body.onload = () => { 
+                document.getElementById('loadback').style.opacity = 0; 
+                setTimeout(() => { 
+                    document.getElementById('loadback').style.display = 'none'; 
+                }, 3000); 
+                clearInterval(bcci);
+            };
+        </script>
+    </div>
+
+    <!-- 添加进度指示器 -->
+    <div class="progress-indicator">
+        <span id="current-page">1</span>/<span id="total-pages">5</span>
+    </div>
+
+    <div class="main">
+        <div class="container">
+            <div class="section self">
+                <div class="contain">
+                    <!-- 修改头像容器结构 -->
+                    <div class="avatar-container">
+                        <img src="assets/images/user.webp" alt="余诺的头像" class="user-img" loading="lazy" onload="resourceLoaded()">
+                    </div>
+                    
+                    <div class="name">
+                        <svg class="yu" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+                            <g transform="translate(0,0) scale(0.303,0.303)">
+                                <path fill="#6c91ee"
+                                    d=" M 185.48 64.76 C 192.71 63.61 199.97 62.42 206.92 60.03 C 212.40 67.09 220.68 70.43 229.20 72.16 C 235.15 72.99 239.42 77.56 244.62 80.11 C 251.60 82.21 254.38 89.64 257.00 95.69 C 247.40 102.40 237.85 109.20 228.28 115.95 C 236.69 119.06 245.47 121.73 252.60 127.42 C 263.68 136.27 275.16 144.73 284.83 155.17 C 294.66 165.50 307.65 171.79 319.28 179.73 C 328.73 186.41 338.79 192.14 348.51 198.39 C 353.39 201.54 359.76 201.16 364.49 204.49 C 374.43 215.99 391.44 215.16 404.21 221.66 C 414.20 226.83 425.47 228.88 435.14 234.72 C 442.02 238.80 450.23 237.91 457.83 239.10 C 460.95 240.11 463.63 242.13 466.52 243.64 C 471.36 246.59 477.20 247.28 482.16 250.00 C 485.19 251.97 487.90 254.40 490.60 256.81 C 486.93 259.83 483.01 262.64 478.63 264.54 C 470.83 267.19 462.11 265.98 454.55 269.41 C 448.80 271.83 442.44 272.09 436.44 273.60 C 431.81 274.46 427.26 275.92 422.54 276.12 C 416.27 276.60 410.13 274.31 403.88 275.25 C 393.33 277.05 382.45 272.99 372.15 276.73 C 364.74 270.85 358.73 263.59 352.43 256.65 C 339.70 249.05 331.56 236.05 320.66 226.30 C 317.65 222.95 312.94 221.59 310.35 217.85 C 303.52 205.45 292.58 196.18 283.10 185.91 C 273.73 178.22 265.59 169.05 259.16 158.76 C 248.92 146.67 235.32 137.64 220.27 132.68 C 206.02 152.30 196.04 174.75 180.45 193.42 C 173.90 201.88 166.93 210.02 160.73 218.75 C 151.98 230.89 140.22 240.42 128.58 249.66 C 119.66 257.34 111.67 266.23 101.61 272.51 C 96.25 275.91 89.40 277.80 86.07 283.69 C 79.22 283.35 74.62 289.32 68.67 291.58 C 59.09 294.83 48.48 298.28 38.48 294.74 C 53.74 281.66 68.98 268.41 82.18 253.19 C 94.20 239.22 107.79 226.66 119.08 212.06 C 126.99 202.02 135.76 192.66 143.28 182.31 C 149.32 171.95 155.60 161.69 160.87 150.91 C 171.22 125.67 191.34 105.75 200.96 80.19 C 195.94 74.91 190.27 70.27 185.48 64.76 Z" />
+                                    <path fill="#6c91ee"
+                                    d=" M 219.85 215.83 C 229.61 214.15 239.57 213.37 249.47 214.06 C 257.95 213.73 265.70 217.45 273.59 220.01 C 272.11 223.75 270.26 227.40 269.49 231.37 C 269.27 237.34 265.00 243.27 259.16 244.79 C 254.25 245.52 249.27 245.73 244.32 246.16 C 242.84 250.35 240.31 254.07 238.66 258.17 C 238.47 261.99 239.96 265.70 240.43 269.47 C 242.69 274.21 239.52 278.39 237.84 282.56 C 251.42 284.05 264.90 282.40 278.17 279.69 C 285.52 281.21 292.99 283.24 299.90 286.32 C 304.41 289.91 308.55 293.97 313.21 297.39 C 312.72 300.13 312.77 303.06 311.57 305.62 C 303.81 310.87 294.75 315.20 285.16 314.80 C 273.36 314.16 261.51 314.18 249.78 312.67 C 246.98 312.30 243.09 313.17 242.43 316.38 C 241.38 327.89 242.43 339.46 242.72 350.99 C 243.15 358.99 242.91 367.18 244.96 374.99 C 247.23 383.08 246.56 391.58 247.87 399.83 C 250.37 417.91 249.66 436.56 243.98 453.99 C 240.89 462.53 232.64 469.40 223.15 467.95 C 212.97 459.75 206.51 447.91 196.72 439.28 C 192.58 435.84 187.42 433.99 183.11 430.84 C 179.05 425.71 176.64 418.62 169.89 416.29 C 170.51 414.57 171.16 412.86 171.82 411.16 C 178.86 413.22 186.05 414.84 193.36 415.52 C 199.45 415.69 205.46 414.23 211.45 413.39 C 212.85 406.12 213.63 398.74 214.17 391.36 C 215.21 379.77 211.22 368.29 212.81 356.69 C 214.62 345.94 211.32 335.29 209.85 324.72 C 202.19 323.43 194.30 323.40 186.85 325.80 C 173.74 328.30 158.34 330.57 146.76 322.24 C 145.31 321.33 143.90 320.36 142.49 319.40 C 150.92 313.26 159.65 306.98 169.73 303.88 C 178.04 301.91 186.32 299.69 194.74 298.21 C 199.80 297.40 206.67 298.07 209.47 292.61 C 212.05 283.58 210.18 274.30 207.61 265.52 C 207.11 259.84 202.69 255.67 197.99 253.10 C 188.36 250.34 178.08 251.92 168.39 249.45 C 164.73 247.36 161.28 244.74 158.96 241.17 C 167.39 237.70 173.53 229.83 182.91 228.48 C 189.49 227.86 195.60 225.26 202.00 223.83 C 208.44 222.26 213.13 216.74 219.85 215.83 Z" />
+                                <path fill="#6c91ee"
+                                    d=" M 119.47 358.44 C 126.45 349.88 125.54 337.83 132.08 328.98 C 142.07 339.53 146.45 353.81 148.78 367.81 C 150.23 373.44 152.93 378.86 152.47 384.85 C 151.88 392.46 149.94 399.91 147.98 407.27 C 143.06 414.16 137.36 420.48 132.55 427.46 C 125.75 426.27 118.11 425.25 113.05 420.06 C 111.05 416.48 109.22 412.25 110.13 408.07 C 112.54 394.82 113.64 381.27 112.68 367.83 C 112.22 363.40 117.16 361.45 119.47 358.44 Z" />
+                                <path fill="#6c91ee"
+                                    d=" M 279.81 340.18 C 289.83 342.32 299.83 344.75 310.07 345.70 C 315.91 346.73 322.75 346.43 327.51 350.54 C 336.60 358.10 348.80 362.38 355.08 372.93 C 359.78 381.46 366.41 390.29 365.58 400.53 C 360.76 404.96 356.43 410.41 350.40 413.28 C 341.90 414.99 333.59 410.07 328.19 403.82 C 320.02 394.80 310.30 387.02 303.42 376.91 C 300.66 367.54 289.31 364.92 285.93 356.05 C 283.72 350.83 281.82 345.48 279.81 340.18 Z" />
+                            </g>
+                        </svg>
+                        <svg class="nuo" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+                            <g transform="translate(0,0) scale(0.303,0.303)">
+                                <path fill="#79bbdc"
+                                    d=" M 341.07 73.10 C 342.47 70.77 345.41 67.88 348.25 69.74 C 357.79 75.07 367.02 81.31 374.72 89.12 C 385.03 101.93 379.07 119.04 379.16 133.86 C 387.64 137.91 397.15 134.13 405.85 132.57 C 414.82 130.38 423.79 133.36 432.74 134.07 C 438.67 134.10 444.27 140.08 442.18 146.02 C 440.30 152.08 436.15 160.26 428.44 158.39 C 418.64 157.88 408.82 157.36 399.02 157.87 C 390.98 156.86 381.63 155.07 374.78 160.77 C 367.95 170.35 367.10 182.58 361.84 192.94 C 357.60 201.86 350.31 208.68 344.84 216.78 C 342.06 216.19 339.24 215.62 336.45 215.12 C 335.23 216.56 334.00 217.99 332.75 219.40 C 327.49 205.28 332.99 190.73 334.42 176.52 C 335.94 172.04 333.46 168.16 331.22 164.62 C 317.50 167.50 303.76 170.42 290.32 174.42 C 288.44 176.70 288.48 179.96 287.55 182.59 C 285.64 192.14 282.30 201.34 277.94 210.02 C 275.95 213.92 270.02 213.74 267.22 210.76 C 259.49 203.92 256.82 193.66 253.99 184.18 C 246.62 186.51 238.91 190.39 230.99 187.97 C 220.58 184.80 211.36 178.20 203.95 170.31 C 208.03 168.54 212.03 166.40 216.45 165.60 C 228.75 163.49 240.90 160.18 252.39 155.27 C 251.80 139.37 247.13 124.08 242.48 109.00 C 240.50 103.08 240.81 96.52 242.67 90.62 C 244.14 86.55 249.26 86.68 252.85 87.19 C 264.76 89.88 273.11 99.45 280.80 108.16 C 287.54 120.74 286.26 135.41 287.75 149.17 C 303.90 149.56 319.83 146.42 335.40 142.41 C 341.02 125.36 344.34 106.81 340.17 89.04 C 339.51 83.82 337.91 77.82 341.07 73.10 Z" />
+                                <path fill="#79bbdc"
+                                    d=" M 185.23 96.98 C 194.31 99.43 202.06 105.11 209.97 110.02 C 209.99 115.37 210.01 120.73 210.03 126.09 C 196.88 136.92 179.35 138.39 163.13 140.43 C 159.76 140.94 156.38 140.12 153.38 138.59 C 147.04 135.44 140.38 132.71 134.89 128.12 C 128.56 121.91 122.88 114.87 119.19 106.76 C 128.60 102.92 138.90 103.43 148.84 102.51 C 160.83 99.97 172.91 97.07 185.23 96.98 Z" />
+                                <path fill="#79bbdc"
+                                    d=" M 136.84 202.96 C 147.05 196.41 158.64 190.83 170.92 190.16 C 177.25 193.01 182.93 197.08 188.95 200.51 C 191.27 211.94 188.54 223.47 184.10 234.02 C 180.50 245.00 175.98 255.62 171.13 266.10 C 167.04 274.53 167.23 284.08 164.38 292.86 C 160.17 313.37 158.08 334.27 157.00 355.16 C 172.64 343.02 188.22 330.59 206.02 321.69 C 188.82 347.90 173.29 375.13 156.78 401.77 C 147.36 416.85 142.43 434.09 135.16 450.20 C 132.61 456.13 124.83 458.46 119.01 456.99 C 110.73 452.01 102.95 445.69 96.94 438.09 C 94.81 431.89 98.79 425.99 100.34 420.16 C 103.38 411.08 114.63 408.26 117.57 399.06 C 119.90 390.87 124.44 383.40 125.39 374.84 C 127.71 355.09 127.99 335.16 130.44 315.42 C 133.14 291.85 131.98 267.98 135.98 244.55 C 131.51 244.30 126.56 243.83 122.68 246.59 C 118.31 248.49 113.99 253.17 108.93 251.14 C 94.87 245.98 80.52 239.33 71.16 227.16 C 85.96 218.77 103.91 220.62 118.96 213.00 C 125.28 210.35 131.62 207.50 136.84 202.96 Z" />
+                                <path fill="#79bbdc"
+                                    d=" M 290.97 212.88 C 298.07 213.24 305.52 212.13 312.48 213.62 C 317.98 219.40 322.99 225.82 329.45 230.65 C 328.86 233.56 328.33 236.50 327.76 239.42 C 338.92 243.94 351.65 244.55 363.13 240.80 C 376.01 236.03 390.19 239.29 403.49 237.19 C 411.67 232.89 420.29 228.21 429.93 229.13 C 439.87 231.33 448.12 237.42 456.77 242.40 C 455.67 247.37 456.00 256.33 449.38 257.33 C 431.99 259.10 414.48 258.77 397.03 259.21 C 376.24 260.24 355.42 261.94 334.96 265.88 C 332.11 266.60 328.62 267.11 327.27 270.16 C 320.45 280.58 314.66 291.62 308.44 302.38 C 303.14 312.13 297.09 321.86 295.50 333.06 C 296.09 336.74 298.50 339.84 299.24 343.50 C 304.12 366.73 306.38 390.43 307.17 414.13 C 324.82 413.44 342.50 412.33 360.01 409.92 C 364.24 409.69 366.37 405.54 368.28 402.32 C 372.23 391.56 373.33 380.03 376.23 369.00 C 379.77 359.87 381.21 350.15 382.77 340.54 C 364.94 342.73 347.48 347.46 330.44 353.07 C 327.78 353.81 325.17 352.42 322.73 351.53 C 314.43 348.29 308.16 341.68 301.69 335.81 C 310.30 331.15 320.14 329.64 329.49 327.11 C 343.17 323.54 357.56 326.02 371.47 324.44 C 381.77 323.63 388.58 311.99 399.68 315.33 C 412.48 320.14 423.06 330.02 430.91 341.04 C 433.10 347.40 431.63 354.58 428.63 360.49 C 424.28 369.29 425.89 379.85 421.51 388.64 C 412.36 404.31 411.77 425.68 395.39 436.44 C 382.37 441.88 369.51 431.73 356.34 434.33 C 343.41 436.50 330.42 438.20 317.50 440.41 C 310.84 440.55 306.72 446.12 302.04 450.01 C 297.58 447.86 291.78 447.61 288.71 443.26 C 281.45 435.15 281.68 423.47 280.62 413.32 C 279.99 398.59 277.78 384.01 275.51 369.46 C 264.90 377.81 259.37 390.50 250.05 400.04 C 245.88 405.23 239.94 408.54 235.44 413.36 C 231.89 418.65 229.84 424.84 225.97 429.95 C 217.81 441.09 206.47 449.21 196.34 458.41 C 192.11 462.83 185.83 459.23 180.67 458.80 C 190.48 443.74 200.12 428.48 211.67 414.67 C 216.34 409.71 217.92 402.90 221.06 397.03 C 229.74 380.05 236.77 362.18 247.11 346.08 C 254.07 335.25 257.48 322.50 265.05 312.03 C 268.00 307.73 271.77 303.66 272.31 298.19 C 274.08 290.43 276.20 282.64 276.36 274.64 C 260.59 279.13 245.74 286.39 229.96 290.84 C 223.53 293.00 216.14 293.19 210.04 289.93 C 201.38 285.29 193.01 280.12 184.24 275.67 C 184.15 274.97 183.96 273.57 183.87 272.87 C 196.85 264.03 212.77 261.45 227.96 258.91 C 244.33 257.12 260.62 254.71 276.80 251.61 C 280.22 250.80 283.49 249.47 286.75 248.18 C 286.45 236.23 288.59 224.52 290.97 212.88 Z" />
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="title">「欢迎来到我的网站」</p>
+                    <p class="text">Welcome to My website!</p>
+                    <a href="#" class="down-link"><img src="assets/images/down.gif" alt="down.gif" class="down-img" loading="lazy"></a>
+                </div>
+            </div>
+
+        <div class="section skill">
+            <div class="contain">
+                <div class="skill-pane">
+                    <p class="title">技术栈</p>
+        
+                    <div class="skill-item">
+                        <span class="skill-icon">🚀</span>
+                        <div class="skill-content">
+                            <p class="skill-title">前端开发</p>
+                            <p class="skill-desc">HTML5 + CSS3 + JavaScript + Vue/React</p>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="skill-divider"></div>
+        
+                    <div class="skill-item">
+                        <span class="skill-icon">⚙️</span>
+                        <div class="skill-content">
+                            <p class="skill-title">后端开发</p>
+                            <p class="skill-desc">PHP + Python + Node.js + MySQL</p>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 78%;"></div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="skill-divider"></div>
+        
+                    <div class="skill-item">
+                        <span class="skill-icon">🏆</span>
+                        <div class="skill-content">
+                            <p class="skill-title">编程竞赛</p>
+                            <p class="skill-desc">Java + C/C++ + 算法与数据结构</p>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 82%;"></div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="skill-divider"></div>
+        
+                    <div class="skill-item">
+                        <span class="skill-icon">🎨</span>
+                        <div class="skill-content">
+                            <p class="skill-title">其他技能</p>
+                            <p class="skill-desc">设计 + 建模 + 视频剪辑 + 项目管理</p>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <img src="assets/images/skill-font.webp" alt="skill-font" class="skill-font" loading="lazy"
+                    onload="resourceLoaded()">
+                <a href="#" class="down-link"><img src="assets/images/down.gif" alt="down.gif" class="down-img"
+                        loading="lazy"></a>
+            </div>
+        </div>
+
+            <div class="section time-line">
+                <div class="contain">
+                    <ul class="time-ul">
+                        <li>
+                            <div class="time-card">
+                                <p class="title">2016 - 2022</p>
+                                <p class="text">九年义务教育</p>
+                                <p class="text">但那时候贪玩就没有认真学习</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="time-card">
+                                <p class="title">2022 - 2025</p>
+                                <p class="text">高中读了一个刚诞生不久的学校</p>
+                                <p class="text">开始了我的编程之旅</p>
+                                <p class="text">学习各种编程知识</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="time-card">
+                                <p class="title">2025 - 2077</p>
+                                <p class="text">考上了目标的大学</p>
+                                <p class="text">未知的未来...</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="#" class="down-link"><img src="assets/images/down.gif" alt="down.gif" class="down-img" loading="lazy"></a>
+                </div>
+            </div>
+
+            <div class="section hobby">
+                <div class="contain">
+                    <div class="hobby-card left">
+                        <img src="assets/images/星野.webp" alt="星野.jpg" class="art" loading="lazy">
+                        <p class="title">GAME</p>
+                        <p class="sub-title">游戏/联机/二次元</p>
+                        <p class="text">枪战类《穿越火线》</p>
+                        <p class="text">MOBA类《王者荣耀》</p>
+                        <p class="text">「年少唯好绚纷世，今朝回眸浮梦虚」</p>
+                    </div>
+                    <div class="hobby-card mid">
+                        <img src="assets/images/胡桃.webp" alt="胡桃.jpg" class="art" loading="lazy">
+                        <p class="title">ACG</p>
+                        <p class="sub-title">动漫/漫画/轻小说</p>
+                        <p class="text">喜欢兽耳萝莉文</p>
+                        <p class="text">嘘~</p>
+                        <p class="text">「秋红零落繁花尽，流金扶摇春萧扬」</p>
+                    </div>
+                    <div class="hobby-card right">
+                        <img src="assets/images/白子.webp" alt="白子.jpg" class="art" loading="lazy">
+                        <p class="title">Music</p>
+                        <p class="sub-title">音乐/乐器</p>
+                        <p class="text">喜欢音乐不会唱，喜欢乐器不会弹</p>
+                        <p class="text">"自己人，别开腔"</p>
+                        <p class="text">「怜君尚抚华年志，踏尽平芜碧浸云」</p>
+                    </div>
+                    <a href="#" class="down-link"><img src="assets/images/down.gif" alt="down.gif" class="down-img" loading="lazy"></a>
+                </div>
+            </div>
+
+            <div class="section contact">
+                <div class="contain">
+                    <p class="title">联系方式</p>
+                    <div class="contact-pane">                                              
+                        <div class="contact-item">
+                            <a href="https://github.com/ContinueYN"><img src="assets/images/github.webp" alt="github.png" loading="lazy"></a>
+                            <p>GitHub</p>
+                        </div>
+                        <div class="contact-item">
+                            <a href="https://gitee.com/ContinueYN"><img src="assets/images/gitee.webp" alt="gitee.png" loading="lazy"></a>
+                            <p>Gitee</p>
+                        </div>
+                        <div class="contact-item">
+                            <a href="抽奖.html"><img src="assets/images/github.webp" alt="抽奖" loading="lazy"></a>
+                            <p>抽奖(ContinueYN)</p>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <p class="copy">Copyright © 2025-3025 ContinueYN All Rights Reserved.</p>
+                        <p class="studio">ContinueYN 版权所有</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <ul>
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="bar"></div>
+        </div>
+    </div>
+</body>
+
+<!-- 使用CDN加载jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="assets/js/index.js"></script>
+
+<!-- 添加结构化数据 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "余诺",
+  "url": "https://continueyn.github.io",
+  "description": "前端开发者和编程爱好者",
+  "skills": ["前端开发", "后端开发", "编程竞赛"]
+}
+</script>
+
+</html>

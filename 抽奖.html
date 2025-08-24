@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YN的抽奖系统</title>
+    <link rel="stylesheet" href="assets/css/YN.css">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="assets/js/YN.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        windowWidth = document.documentElement.clientWidth || document.body.clientWidth;
+        windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+        document.addEventListener('keydown', function (event) {
+                if (event.keyCode === 123) { // F12 key
+                    event.preventDefault();
+                    return false;
+                }
+            });
+
+            document.addEventListener('contextmenu', function (event) {
+                event.preventDefault();
+                return false;
+            });   
+        document.onkeydown = function () {
+                //禁止ctrl+u
+                if (event.ctrlKey && window.event.keyCode == 85) {
+                    return false;
+                }
+            }        
+    </script>
+    <div class="container">
+        <header>
+            <h1>YN的抽奖系统</h1>
+            <p class="subtitle">高级视觉效果</p>
+        </header>
+        
+        <div class="content">
+            <div class="control-panel">
+                <h2 class="panel-title">抽奖设置</h2>
+                
+                <div class="input-group">
+                    <label for="start-number">起始号数</label>
+                    <input type="number" id="start-number" min="1" value="1">
+                </div>
+                
+                <div class="input-group">
+                    <label for="end-number">结束号数</label>
+                    <input type="number" id="end-number" min="2" value="100">
+                </div>
+                
+                <div class="input-group">
+                    <label for="draw-count">每次抽取数量</label>
+                    <input type="number" id="draw-count" min="1" max="20" value="5">
+                </div>
+                
+                <div class="buttons">
+                    <button id="start-btn">开始抽奖</button>
+                    <button id="reset-btn">重置</button>
+                </div>
+                
+                <div id="history">
+                    <h3>历史记录</h3>
+                    <div id="history-list"></div>
+                </div>
+            </div>
+            
+            <div class="lottery-display">
+                <div id="three-container"></div>
+                <div id="result-container">
+                    <div id="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
