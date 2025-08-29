@@ -97,8 +97,7 @@ html{
 }
 
 .avatar-container .user-img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 30px 10px rgba(103, 153, 254, 0.9), 0 0 50px 15px rgba(147, 112, 219, 0.7), 0 0 70px 20px rgba(255, 105, 180, 0.5);
+  transform: scale(0.95);
 }
 
 .avatar-container::before {
@@ -1371,6 +1370,10 @@ ul {
         0 0 20px rgba(255, 255, 255, 0.05) inset;
 }
 
+[data-theme="dark"] .hobby .hobby-card p{
+    color: #fcfcfc;
+}
+
 [data-theme="dark"] .hobby .hobby-card:hover {
     box-shadow: 
         0 15px 45px rgba(0, 0, 0, 0.4),
@@ -1407,7 +1410,7 @@ ul {
     box-shadow: 
         0 15px 50px rgba(0, 0, 0, 0.15),
         0 0 30px rgba(255, 255, 255, 0.08) inset;
-    max-width: 650px;
+    max-width: 1000px;
     margin: 0 auto;
     transform: translateY(30px);
     opacity: 0;
@@ -1683,4 +1686,503 @@ ul {
     justify-content: center;
     width: 40px;
     height: 40px;
+}
+/* 第五屏联系方式面板玻璃模糊效果 */
+.contact .contact-pane {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 75rem;
+    height: 37.5rem;
+    background: rgba(255, 255, 255, 0.15) !important; /* 半透明背景 */
+    backdrop-filter: blur(20px) saturate(180%) !important; /* 玻璃模糊效果 */
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important; /* 细微边框 */
+    border-radius: 20px !important; /* 圆角 */
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.15),
+        0 0 40px rgba(255, 255, 255, 0.1) inset !important; /* 内外阴影 */
+    padding: 2rem !important;
+    transition: all 0.4s ease !important;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 玻璃效果增强层 */
+.contact .contact-pane::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    z-index: -1;
+    border-radius: 20px;
+}
+
+/* 确保图标和文字清晰可见 */
+.contact .contact-pane .contact-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 50%;
+    font-size: 1.25rem;
+    position: relative;
+    z-index: 2; /* 确保内容在模糊层之上 */
+    transition: all 0.3s ease;
+}
+
+/* 图标容器增强 */
+.contact .contact-pane .contact-item a {
+    width: 6.25rem;
+    height: 6.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* 图标样式 */
+.contact .contact-pane .contact-item img {
+    width: 4rem !important; /* 适当缩小图标 */
+    height: 4rem !important;
+    border-radius: 12px !important; /* 轻微圆角 */
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)); /* 图标投影 */
+}
+
+/* 文字样式 */
+.contact .contact-pane .contact-item p {
+    margin-top: 1rem;
+    color: #333 !important;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8); /* 文字反阴影增强可读性 */
+    transition: all 0.3s ease;
+}
+
+/* 悬停效果 */
+.contact .contact-pane .contact-item:hover a {
+    transform: translateY(-5px) scale(1.1);
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.2),
+        0 0 20px rgba(255, 255, 255, 0.2) inset;
+}
+
+.contact .contact-pane .contact-item:hover img {
+    transform: scale(1.15);
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+.contact .contact-pane .contact-item:hover p {
+    transform: translateY(2px);
+    color: #000 !important;
+    text-shadow: 0 3px 6px rgba(255, 255, 255, 0.9);
+}
+
+/* 标题样式调整 */
+.contact .title {
+    font-size: 4rem;
+    color: #333 !important;
+    text-shadow: 0 4px 8px rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem !important;
+}
+
+/* 暗黑模式适配 */
+[data-theme="dark"] .contact .contact-pane {
+    background: rgba(0, 0, 0, 0.2) !important;
+    backdrop-filter: blur(25px) saturate(160%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(255, 255, 255, 0.05) inset !important;
+}
+
+[data-theme="dark"] .contact .contact-pane .contact-item a {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .contact .contact-pane .contact-item p {
+    color: #fff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .contact .contact-pane .contact-item:hover a {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .contact .title {
+    color: #fff !important;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .contact .contact-pane .contact-item:hover p {
+    color: #fff !important;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* 第四屏移动端横向布局优化 - 无滚动条版本 */
+@media (max-width: 767px) {
+    .hobby .contain {
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        padding: 1rem !important;
+        height: auto !important; /* 改为自动高度 */
+        overflow: visible !important; /* 移除滚动 */
+        gap: 1rem !important; /* 使用gap间距 */
+    }
+    
+    .hobby .hobby-card {
+        width: 95% !important;
+        height: auto !important;
+        min-height: 120px !important;
+        padding: 1.2rem !important;
+        margin-bottom: 1rem !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        border-radius: 15px !important;
+        backdrop-filter: blur(10px) !important;
+    }
+    
+    .hobby .hobby-card .art {
+        width: 70px !important;
+        height: 70px !important;
+        margin-bottom: 0 !important;
+        margin-right: 1.2rem !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .hobby .hobby-card .content {
+        flex: 1 !important;
+        text-align: left !important;
+    }
+    
+    .hobby .hobby-card p {
+        margin: 0.15rem 0 !important;
+        text-align: left !important;
+        line-height: 1.3 !important;
+    }
+    
+    .hobby .hobby-card p.title {
+        font-size: 1.1rem !important;
+        font-weight: bold !important;
+        margin-bottom: 0.2rem !important;
+    }
+    
+    .hobby .hobby-card p.sub-title {
+        font-size: 0.85rem !important;
+        opacity: 0.8 !important;
+        margin-bottom: 0.4rem !important;
+    }
+    
+    .hobby .hobby-card p.text {
+        font-size: 0.75rem !important;
+        display: none !important; /* 默认隐藏详细文本 */
+    }
+    
+    /* 只显示前两行文本 */
+    .hobby .hobby-card p.text:nth-child(3),
+    .hobby .hobby-card p.text:nth-child(4) {
+        display: block !important;
+    }
+    
+    /* 调整卡片内容布局 */
+    .hobby .hobby-card .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    /* 调整动画 */
+    .hobby .hobby-card {
+        animation: cardSlideUp 0.5s ease forwards !important;
+    }
+    
+    .hobby .hobby-card.left {
+        animation-delay: 0.1s !important;
+    }
+    
+    .hobby .hobby-card.mid {
+        animation-delay: 0.2s !important;
+    }
+    
+    .hobby .hobby-card.right {
+        animation-delay: 0.3s !important;
+    }
+    
+    /* 移除滑动指示 */
+    .hobby .contain::after {
+        display: none !important;
+    }
+}
+
+/* 确保整个区域没有滚动 */
+.section.hobby {
+    overflow: hidden !important;
+}
+
+.hobby .contain {
+    overflow: visible !important;
+}
+
+/* 移除可能存在的滚动条 */
+.hobby .contain::-webkit-scrollbar {
+    display: none !important;
+}
+
+.hobby .contain {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+}
+
+/* 平板设备优化 */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hobby .contain {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        overflow: visible !important;
+    }
+    
+    .hobby .hobby-card {
+        width: 45% !important;
+        height: 22rem !important;
+        margin: 1rem !important;
+        flex-direction: column !important;
+    }
+    
+    .hobby .hobby-card .art {
+        width: 100px !important;
+        height: 100px !important;
+        margin-right: 0 !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .hobby .hobby-card .content {
+        text-align: center !important;
+    }
+    
+    .hobby .hobby-card p {
+        text-align: center !important;
+    }
+    
+    .hobby .hobby-card p.text {
+        display: block !important;
+    }
+}
+
+/* 第三屏时间线卡片模糊效果 */
+.time-line ul li .time-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 25rem;
+    height: 15.625rem;
+    color: white !important; /* 文字改为白色 */
+    background: rgba(255, 255, 255, 0.12) !important; /* 半透明背景 */
+    backdrop-filter: blur(15px) saturate(160%) !important; /* 玻璃模糊效果 */
+    -webkit-backdrop-filter: blur(15px) saturate(160%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important; /* 细微边框 */
+    border-radius: 16px !important; /* 圆角 */
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        0 0 30px rgba(255, 255, 255, 0.1) inset !important; /* 内外阴影 */
+    opacity: 0;
+    transition: all 0.4s ease !important;
+    z-index: 2;
+}
+
+/* 时间线卡片悬停效果 */
+.time-line ul li .time-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    background: rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.2),
+        0 0 40px rgba(255, 255, 255, 0.15) inset !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+}
+
+/* 时间线文字样式优化 */
+.time-line ul li .time-card p {
+    font-size: 1.125rem;
+    margin: 0.25rem 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6); /* 文字阴影增强可读性 */
+}
+
+.time-line ul li .time-card p.title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #fff !important;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+}
+
+.time-line ul li .time-card p.text {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* 时间线指示器样式优化 */
+.time-line ul::before {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 3px; /* 加粗时间线 */
+    background: linear-gradient(
+        90deg, 
+        rgba(250, 83, 83, 0.874) 0%,
+        rgba(243, 70, 217, 0.858) 50%,
+        rgb(88, 69, 230) 100%
+    ) !important;
+    backdrop-filter: blur(5px);
+}
+
+/* 三角形指示器样式优化 */
+.time-line ul li .time-card::before {
+    content: " ";
+    position: absolute;
+    right: calc(50% - 1.5rem);
+    border: 1.5rem solid transparent;
+    z-index: 1;
+}
+
+.time-line ul li:nth-child(odd) .time-card::before {
+    border-top-color: rgba(255, 255, 255, 0.3) !important;
+    bottom: -3rem;
+}
+
+.time-line ul li:nth-child(even) .time-card::before {
+    border-bottom-color: rgba(255, 255, 255, 0.3) !important;
+    top: -3rem;
+}
+
+/* 暗黑模式适配 */
+[data-theme="dark"] .time-line ul li .time-card {
+    background: rgba(0, 0, 0, 0.25) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(20px) saturate(140%) !important;
+}
+
+[data-theme="dark"] .time-line ul li .time-card:hover {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+
+[data-theme="dark"] .time-line ul::before {
+    background: linear-gradient(
+        90deg, 
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.2) 100%
+    ) !important;
+}
+
+/* 移动端响应式调整 */
+@media (max-width: 767px) {
+    .time-line ul li .time-card {
+        width: 90% !important;
+        height: auto !important;
+        min-height: 120px !important;
+        padding: 1.5rem !important;
+        backdrop-filter: blur(12px) saturate(140%) !important;
+    }
+    
+    .time-line ul li .time-card p.title {
+        font-size: 1.5rem !important;
+    }
+    
+    .time-line ul li .time-card p.text {
+        font-size: 1rem !important;
+    }
+    
+    .time-line ul li .time-card::before {
+        display: none !important; /* 移动端隐藏三角形 */
+    }
+    
+    .time-line ul::before {
+      display: none;
+        height: 2px !important;
+        background: linear-gradient(
+            90deg, 
+            rgba(255, 255, 255, 0.2) 0%,
+            rgba(255, 255, 255, 0.4) 50%,
+            rgba(255, 255, 255, 0.2) 100%
+        ) !important;
+    }
+}
+
+/* 平板设备调整 */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .time-line ul li .time-card {
+        width: 90% !important;
+        height: auto !important;
+        min-height: 120px !important;
+        padding: 1.5rem !important;
+        backdrop-filter: blur(12px) saturate(140%) !important;
+    }
+    
+    .time-line ul li .time-card p.title {
+        font-size: 1.5rem !important;
+    }
+    
+    .time-line ul li .time-card p.text {
+        font-size: 1rem !important;
+    }
+    
+    .time-line ul li .time-card::before {
+        display: none !important; /* 移动端隐藏三角形 */
+    }
+    
+    .time-line ul::before {
+      display: none;
+        height: 2px !important;
+        background: linear-gradient(
+            90deg, 
+            rgba(255, 255, 255, 0.2) 0%,
+            rgba(255, 255, 255, 0.4) 50%,
+            rgba(255, 255, 255, 0.2) 100%
+        ) !important;
+    }
+}
+
+/* 卡片入场动画增强 */
+@keyframes glassCardSlide {
+    0% {
+        transform: translateY(30px) scale(0.95);
+        opacity: 0;
+        backdrop-filter: blur(5px) saturate(100%) !important;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        backdrop-filter: blur(15px) saturate(160%) !important;
+    }
+}
+
+.time-line .time-line-animation > li:nth-child(1) .time-card {
+    animation: glassCardSlide 1s ease 0.5s forwards;
+}
+
+.time-line .time-line-animation > li:nth-child(2) .time-card {
+    animation: glassCardSlide 1s ease 1s forwards;
+}
+
+.time-line .time-line-animation > li:nth-child(3) .time-card {
+    animation: glassCardSlide 1s ease 1.5s forwards;
 }
